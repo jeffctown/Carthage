@@ -92,7 +92,7 @@ extension ProjectLocator {
 			}
 			.skip { line in !line.hasSuffix("Schemes:") }
 			.skip(first: 1)
-			.take { line in !line.isEmpty }
+            .take { line in !line.isEmpty && !line.contains("GRDBCustomSQLite") }
 			.map { line in
 				let trimmed = line.trimmingCharacters(in: .whitespaces)
 				return Scheme(trimmed)
