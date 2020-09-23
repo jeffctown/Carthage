@@ -829,9 +829,9 @@ private func build(sdk: SDK, with buildArgs: BuildArguments, in workingDirectory
 							]
 						}
 
-                        if xcodebuildAction == .build && !sdk.isDevice {
-                            print("Building for Simulator: Excluding arm64 Architecture to bypass Xcode12 Issue: https://github.com/Carthage/Carthage/issues/3019")
-                            result += ["EXCLUDED_ARCHS=arm64"]
+						if xcodebuildAction == .build && !sdk.isDevice && sdk.rawValue != "watchsimulator" {
+							print("Building for \(sdk.rawValue): Excluding arm64 Architecture to bypass Xcode12 Issue: https://github.com/Carthage/Carthage/issues/3019")
+							result += ["EXCLUDED_ARCHS=arm64"]
                         }
                         
 						return result
